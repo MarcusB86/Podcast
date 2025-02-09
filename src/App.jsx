@@ -19,7 +19,7 @@ const App = () => {
   <textarea placeholder="Paste your transcript here..."></textarea>
 
   
-  <button class="generate-btn">Generate Podcast Magic ✨</button>
+  <button class="generate-btn">Generate Podcast Magics ✨</button>
 </div>
   );
 }
