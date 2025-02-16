@@ -3,15 +3,12 @@
 @tailwind utilities;
 
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* General Reset */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #fdfdfd; /* Light neutral background */
+  background-color: #984848; /* Light neutral background */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,7 +17,7 @@ body {
 
 /* App Container */
 .app-container {
-  background-color: #ffffff;
+  background-color: #2a9830;
   width: 100%;
   max-width: 600px;
   padding: 2rem;
@@ -33,7 +30,7 @@ body {
 .header {
   font-size: 2rem; /* Larger text for the title */
   font-weight: bold;
-  color: #f97316; /* Vibrant orange */
+  color: #162df9; /* Vibrant orange */
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -44,41 +41,73 @@ body {
 /* Icon Styling */
 .header svg {
   font-size: 2.5rem; /* Larger icon size */
-  color: #f97316;
+  color: #1630f9;
 }
 
 /* Buttons Container */
 .buttons-container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
+  justify-content: center;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* Button Styling */
 button {
   flex: 1;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   font-size: 1rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #c31f1f;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Upload Audio Button */
+.upload-audio {
+  background: linear-gradient(90deg,  #b9b0b0, #b9b0b0); /* Gradient orange */
+}
+
+/* Enter Transcript Button */
+.enter-transcript {
+  background: linear-gradient(90deg, #b9b0b0, #b9b0b0); /* Reverse gradient */
+}
+
+/* Hover Effects */
 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.upload-audio {
-  background: linear-gradient(90deg, #f97316, #fb923c); /* Gradient orange */
+/* Hide the File Input */
+input[type="file"] {
+  display: none;
 }
 
-.enter-transcript {
-  background: linear-gradient(90deg, #fb923c, #f97316); /* Reverse gradient */
+/* Text-to-Speech Section */
+.tts-container {
+  max-width: 100%;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* Audio Player Section */
+.audio-player-container {
+  max-width: 100%;
+  background-color: #692f2f;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
 }
 
 /* Textarea */
@@ -94,7 +123,7 @@ textarea {
   outline: none;
 }
 
-/* Submit Button */
+/* Generate Button */
 .generate-btn {
   width: 100%;
   padding: 0.75rem;
@@ -112,4 +141,5 @@ textarea {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
