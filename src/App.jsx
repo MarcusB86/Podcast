@@ -12,17 +12,23 @@ const App = () => {
   
   const fileInputRef = useRef(null);
 
-  // Handle file upload
+  
   const handleAudioUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
   
+    const allowedTypes = ["audio/mp3", "audio/wav", "audio/ogg"];
+    if (!allowedTypes.includes(file.type)) {
+      alert("Invalid file type. Please upload an MP3, WAV, or OGG file.");
+      return;
+    }
+  
     const formData = new FormData();
-    formData.append('audioFile', file);
+    formData.append("audioFile", file);
   
     try {
-      const response = await fetch('http://localhost:5000/upload', {
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/upload", {
+        method: "POST",
         body: formData,
       });
   
@@ -30,53 +36,59 @@ const App = () => {
       if (response.ok) {
         setAudioFile(`http://localhost:5000${data.filePath}`);
       } else {
-        console.error('Upload failed:', data.error);
+        console.error("Upload failed:", data.error);
+        alert("Upload failed. Please try again.");
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error("Error uploading file:", error);
+      alert("Failed to upload audio. Please try again.");
     }
   };
+  
 
-  // Handle transcript submission
   const handleTranscriptSubmit = () => {
     setGeneratedText(transcriptText);
-    setShowTranscriptInput(false); // Hide input after submitting
+    setShowTranscriptInput(false); 
   };
 
-  // Handle podcast generation
   const handleGeneratePodcast = async () => {
     if (!generatedText) {
-      alert('Please enter a transcript before generating the podcast.');
+      alert("Please enter a transcript before generating the podcast.");
       return;
     }
-
+  
     setLoading(true);
-    
+  
     try {
-      const response = await fetch('http://localhost:5000/generate-podcast', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("http://localhost:5000/generate-podcast", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ transcript: generatedText }),
       });
-
+  
       const data = await response.json();
+  
       if (response.ok) {
         setAudioFile(`http://localhost:5000${data.audioPath}`);
       } else {
-        console.error('Podcast generation failed:', data.error);
+        console.error("Podcast generation failed:", data.error);
+        alert("Podcast generation failed. Please try again.");
       }
     } catch (error) {
-      console.error('Error generating podcast:', error);
+      console.error("Error generating podcast:", error);
+      alert("Error generating podcast. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
   };
+  
+  
 
   return (
     <div className="app-container">
-      {/* Buttons */}
+
       <div className="buttons-container">
-        {/* Hidden file input */}
+        
         <input
           type="file"
           accept="audio/*"
@@ -85,18 +97,15 @@ const App = () => {
           className="hidden-input"
         />
         
-        {/* Upload Audio Button */}
         <button className="upload-audio" onClick={() => fileInputRef.current.click()}>
           🎤 Upload Audio
         </button>
 
-        {/* Enter Transcript Button */}
         <button className="enter-transcript" onClick={() => setShowTranscriptInput(!showTranscriptInput)}>
           ✏️ Enter Transcript
         </button>
       </div>
 
-      {/* Transcript Input Area */}
       {showTranscriptInput && (
         <div className="transcript-container">
           <h2>Enter Transcript</h2>
@@ -113,22 +122,20 @@ const App = () => {
         </div>
       )}
 
-      {/* Text-to-Speech Section */}
       <div className="section-container">
         <h1>Podcast Text-to-Speech</h1>
         <TextToSpeech text={generatedText} />
       </div>
 
-      {/* Generate Podcast Button */}
       <button 
-        className={`generate-btn ${loading ? 'disabled' : ''}`}
-        onClick={handleGeneratePodcast}
-        disabled={loading}
-      >
-        {loading ? 'Generating Podcast...' : '🎙 Generate Podcast'}
-      </button>
+  className={`generate-btn ${loading ? "disabled" : ""}`}
+  onClick={handleGeneratePodcast}
+  disabled={loading}
+>
+  {loading ? <div className="spinner"></div> : "🎙 Generate Podcast"}
+</button>
 
-      {/* Audio Player Section */}
+
       {audioFile && (
         <div className="section-container">
           <h1>Podcast Audio Playback</h1>

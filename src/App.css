@@ -1,3 +1,367 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    background: #f9f9f9; 
+    color: #333; 
+  }
+  
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+  }
+  
+ 
+  .section-container {
+    width: 80%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); 
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+ 
+  button {
+    padding: 14px 24px;
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #f5f5f5; 
+    color: #333;
+  }
+  
+  button:hover {
+    background: #e0e0e0; 
+    transform: scale(1.05);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+ 
+  .upload-audio {
+    background: #6c63ff;
+    color: #ffffff;
+    border: 1px solid #6c63ff;
+  }
+  
+  .upload-audio:hover {
+    background: #5548e5;
+  }
+  
+  .enter-transcript {
+    background: #ff8c00;
+    color: #ffffff;
+    border: 1px solid #ff8c00;
+  }
+  
+  .enter-transcript:hover {
+    background: #e07b00;
+  }
+  
+  .submit-btn {
+    background: #28a745;
+    color: #ffffff;
+    border: 1px solid #28a745;
+  }
+  
+  .submit-btn:hover {
+    background: #218838;
+  }
+  
+ 
+  .disabled {
+    background: #bdbdbd;
+    color: #757575;
+    border: 1px solid #bdbdbd;
+    cursor: not-allowed;
+  }
+  
+
+  .progress-bar-container {
+    width: 80%;
+    max-width: 800px;
+    height: 10px;
+    background: #e0e0e0; 
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, #6c63ff, #ff8c00);
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .download-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #17a2b8;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 16px;
+    border: 1px solid #17a2b8;
+  }
+  
+  .download-btn:hover {
+    background: #138496;
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .app-container {
+      height: auto;
+      padding: 10px;
+    }
+  
+    .buttons-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    button {
+      width: 90%;
+    }
+  
+    .section-container {
+      width: 95%;
+      padding: 15px;
+    }
+  }
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4A90E2;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+   */
+/* Global Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    background: #f4f5f7;
+    color: #333;
+  }
+  
+  /* Main Container */
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Section Styling */
+  .section-container {
+    width: 90%;
+    max-width: 800px;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    margin: 12px 0;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .section-container:hover {
+    transform: translateY(-3px);
+  }
+  
+  /* Button Container */
+  .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* General Button Styling */
+  button {
+    padding: 14px 26px;
+    font-size: 18px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    background: linear-gradient(135deg, #e0e0e0, #f7f7f7);
+    color: #333;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg, #d6d6d6, #ececec);
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Custom Buttons */
+  .upload-audio {
+    background: linear-gradient(135deg, #6c63ff, #5548e5);
+    color: #ffffff;
+  }
+  
+  .upload-audio:hover {
+    background: linear-gradient(135deg, #5548e5, #4238c7);
+  }
+  
+  .enter-transcript {
+    background: linear-gradient(135deg, #ff8c00, #e07b00);
+    color: #ffffff;
+  }
+  
+  .enter-transcript:hover {
+    background: linear-gradient(135deg, #e07b00, #c96b00);
+  }
+  
+  .submit-btn {
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: #ffffff;
+  }
+  
+  .submit-btn:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+  }
+  
+  /* Disabled Button */
+  .disabled {
+    background: #bdbdbd;
+    color: #757575;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  /* Progress Bar */
+  .progress-bar-container {
+    width: 90%;
+    max-width: 800px;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 15px;
+  }
+  
+  .progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #6c63ff, #ff8c00);
+    transition: width 0.4s ease-in-out;
+  }
+  
+  /* Download Button */
+  .download-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .download-btn:hover {
+    background: linear-gradient(135deg, #138496, #117a8b);
+    transform: translateY(-2px);
+  }
+  
+  /* Spinner (Loading Animation) */
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4A90E2;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .app-container {
+      height: auto;
+      padding: 12px;
+    }
+  
+    .buttons-container {
+      flex-direction: column;
+      gap: 12px;
+    }
+  
+    button {
+      width: 95%;
+    }
+  
+    .section-container {
+      width: 95%;
+      padding: 18px;
+    }
+  }
+  

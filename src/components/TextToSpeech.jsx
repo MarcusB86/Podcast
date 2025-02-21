@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./TextToSpeech.css"; // Import CSS for styling
+import "./TextToSpeech.css";
 
 const TextToSpeech = ({ text }) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
@@ -12,10 +12,9 @@ const TextToSpeech = ({ text }) => {
 
     const speech = new SpeechSynthesisUtterance(text);
 
-    // Optional: Customize voice settings
     speech.lang = "en-US";
-    speech.rate = 1; // Speed (0.5 = slow, 1 = normal, 2 = fast)
-    speech.pitch = 1; // Pitch (0 = low, 1 = normal, 2 = high)
+    speech.rate = 1; 
+    speech.pitch = 1; 
 
     speech.onstart = () => setIsSpeaking(true);
     speech.onend = () => setIsSpeaking(false);
